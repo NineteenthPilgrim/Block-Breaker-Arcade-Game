@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ofgyt3mr14k"]
+
+[ext_resource type="Script" uid="uid://st3by74wocmj" path="res://scenes/bricks/brick.gd" id="1_7oinx"]
+[ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="1_jwfv0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oinx"]
+atlas = ExtResource("1_jwfv0")
+region = Rect2(128, 184, 16, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ou3qe"]
+size = Vector2(16, 8)
+
+[node name="Brick" type="RigidBody2D" groups=["Brick"]]
+gravity_scale = 0.0
+script = ExtResource("1_7oinx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 4)
+texture = SubResource("AtlasTexture_7oinx")
+
+[node name="CollisionShapeBrickOne" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_ou3qe")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(8, 4)
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+preprocess = 0.5
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector2(0, -500)
+linear_accel_min = 0.1
+linear_accel_max = 0.1
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+color = Color(0.733333, 0.278431, 0.309804, 1)

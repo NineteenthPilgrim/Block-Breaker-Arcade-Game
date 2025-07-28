@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Block Breaker Arcade Game"
+run/main_scene="uid://c2sdpum8uhj8d"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://scenes/managers/game_manager.tscn"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=256
+window/size/window_width_override=768
+window/size/window_height_override=768
+window/stretch/mode="canvas_items"
+
+[global_group]
+
+Brick=""
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.223529, 0.168627, 0.207843, 1)

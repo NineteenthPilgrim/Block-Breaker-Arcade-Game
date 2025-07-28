@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://jk4ahqvun08w"]
+
+[ext_resource type="Script" uid="uid://tlqjux8pcqew" path="res://scenes/platform/platform.gd" id="1_7j252"]
+[ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="1_8pv2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j252"]
+atlas = ExtResource("1_8pv2r")
+region = Rect2(48, 128, 32, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34mie"]
+size = Vector2(32, 6)
+
+[node name="Platform" type="CharacterBody2D"]
+motion_mode = 1
+slide_on_ceiling = false
+wall_min_slide_angle = 1.5708
+script = ExtResource("1_7j252")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_7j252")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_34mie")
