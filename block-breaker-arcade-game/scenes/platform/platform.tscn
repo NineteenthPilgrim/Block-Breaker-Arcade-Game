@@ -11,6 +11,7 @@ region = Rect2(48, 128, 32, 10)
 size = Vector2(32, 6)
 
 [node name="Platform" type="CharacterBody2D"]
+collision_mask = 4
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 1.5708

@@ -311,6 +311,7 @@ script = ExtResource("1_qkmgm")
 position = Vector2(128, 128)
 
 [node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 5
 
 [node name="LeftWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2(6, 128)
@@ -351,9 +352,9 @@ scale = Vector2(1.02297, 0.639874)
 shape = SubResource("RectangleShape2D_hnne4")
 
 [node name="Platform" parent="." instance=ExtResource("1_nbgty")]
-position = Vector2(124, 240)
+position = Vector2(128, 240)
 
 [node name="Ball" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(122, 21)
+position = Vector2(129, 228)
 
 [connection signal="body_entered" from="DangerZone" to="Ball" method="_on_danger_zone_body_entered"]

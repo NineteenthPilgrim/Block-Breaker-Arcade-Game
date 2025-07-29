@@ -1,18 +1,16 @@
 extends CharacterBody2D
 
 
-const SPEED = 400
-
+const speed = 500
+const level_width = 256
+const platform_width = 16
+const platform_position_y: float = 240.0 
 
 func _physics_process(delta: float) -> void:
-
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	global_position.y = platform_position_y
+	var mouse_x = get_global_mouse_position().x
+	mouse_x = clamp(mouse_x, level_width / 16 + (platform_width / 2),\
+	 level_width - 16 - (platform_width / 2))
+	global_position.x = mouse_x
+	global_position.y = platform_position_y
 	move_and_slide()

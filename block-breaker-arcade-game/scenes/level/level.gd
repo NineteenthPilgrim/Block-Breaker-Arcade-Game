@@ -3,16 +3,16 @@ extends Node2D
 @onready var brick_one = preload("res://scenes/bricks/brick.tscn")
 @onready var brick_two = preload("res://scenes/bricks/brick_two.tscn")
 
-var columns = 8
-var rows = 5
-var margin = 16
+var columns = 9
+var rows = 1
+var margin = 24
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level()
-	
-	
+
+
 func level():
-	rows = 3 + GameManager.level
+	rows = 4 + GameManager.level
 	if rows > 9:
 		rows = 9
 	for i in rows:
@@ -27,7 +27,6 @@ func level():
 					var new_bricks = brick_two.instantiate()
 					add_child(new_bricks)
 					new_bricks.position = Vector2(margin + (24 * j), margin + (16 * i))
-				
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
