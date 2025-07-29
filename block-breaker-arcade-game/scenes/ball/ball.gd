@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 100
+var speed = 200
 var direction = Vector2.DOWN
 var is_active = true
 

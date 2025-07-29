@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 	
 func level():
-	rows = 5 + GameManager.level
+	rows = 3 + GameManager.level
 	if rows > 9:
 		rows = 9
 	for i in rows:
