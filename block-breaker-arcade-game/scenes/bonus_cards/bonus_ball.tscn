@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvgss8wu8piew"]
+
+[ext_resource type="Script" uid="uid://c1xoaj7l0eajl" path="res://scenes/bonus_cards/bonus_ball.gd" id="1_cj20f"]
+[ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="1_hrqto"]
+[ext_resource type="PackedScene" uid="uid://db1255chn3jf5" path="res://scenes/ball/ball.tscn" id="2_517rg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nr04"]
+atlas = ExtResource("1_hrqto")
+region = Rect2(147, 65, 10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cj20f"]
+size = Vector2(10, 12)
+
+[node name="BonusBall" type="Area2D"]
+position = Vector2(0, 6)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_cj20f")
+ball_scene = ExtResource("2_517rg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_8nr04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cj20f")

@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-var speed = 190
+var speed = 180
 var direction = Vector2.DOWN
 var is_active = true
 
 
 func _ready() -> void:
-	speed = speed + (10 * GameManager.level)
+	speed = speed + (15 * GameManager.level)
 	velocity = Vector2(speed * -1, speed)
 	
 
