@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 
 func hit():
 	GameManager.points(1)
+	$CPUParticles2D.emitting = true
 	sprite_2d.visible = false
 	collision_shape_2d.disabled = true
 	var brick_left = get_tree().get_nodes_in_group('Brick')

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Block Breaker Arcade Game"
-run/main_scene="uid://c2sdpum8uhj8d"
+run/main_scene="uid://rjynhysk30ij"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

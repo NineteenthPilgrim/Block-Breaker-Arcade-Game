@@ -24,6 +24,6 @@ func hit():
 		GameManager.level += 1 
 		get_tree().reload_current_scene()
 	else:
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(1).timeout
 		queue_free()
 	
