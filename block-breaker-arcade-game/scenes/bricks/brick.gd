@@ -22,7 +22,8 @@ func hit():
 		#get_parent().get_node("Ball").is_active = false
 		await get_tree().create_timer(1).timeout
 		GameManager.level += 1 
-		get_tree().reload_current_scene()
+		GameManager.load_current_level()
+		#get_tree().reload_current_scene()
 	else:
 		await get_tree().create_timer(1).timeout
 		queue_free()

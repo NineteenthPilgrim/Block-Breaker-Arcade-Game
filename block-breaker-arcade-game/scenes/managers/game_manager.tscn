@@ -24,7 +24,7 @@ theme_override_font_sizes/font_size = 10
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LavelLabel" type="Label" parent="CanvasLayer"]
+[node name="LevelLabel" type="Label" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

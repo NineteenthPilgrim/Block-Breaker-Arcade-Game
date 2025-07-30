@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var brick_one = preload("res://scenes/bricks/brick.tscn")
 @onready var brick_two = preload("res://scenes/bricks/brick_two.tscn")
+@onready var danger_zone: Area2D = $DangerZone
+
+@export var end_screen: PackedScene
 
 var columns = 9
 var rows
