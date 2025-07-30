@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-var speed = 180
+var speed = 190
 var direction = Vector2.DOWN
 var is_active = true
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 
 func _ready() -> void:
-	speed = speed + (15 * GameManager.level)
+	speed = speed + (10 * GameManager.level)
 	velocity = Vector2(speed * -1, speed)
 	
 
@@ -39,5 +41,6 @@ func game_over():
 	
 
 func _on_danger_zone_body_entered(body: Node2D) -> void:
+	sprite_2d.visible = false
 	await get_tree().create_timer(.1).timeout
 	game_over()

@@ -1,15 +1,18 @@
-[gd_scene load_steps=12 format=4 uid="uid://58fkqb43f338"]
+[gd_scene load_steps=14 format=4 uid="uid://58fkqb43f338"]
 
 [ext_resource type="Script" uid="uid://dc2l5rpm540ld" path="res://scenes/levels/level_three.gd" id="1_oknu7"]
+[ext_resource type="PackedScene" uid="uid://bvgss8wu8piew" path="res://scenes/bonus_cards/bonus_ball.tscn" id="2_4umhc"]
 [ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="2_y0l6c"]
 [ext_resource type="PackedScene" uid="uid://jk4ahqvun08w" path="res://scenes/platform/platform.tscn" id="3_4umhc"]
 [ext_resource type="PackedScene" uid="uid://db1255chn3jf5" path="res://scenes/ball/ball.tscn" id="4_7ry6i"]
+[ext_resource type="PackedScene" uid="uid://bu5xfxqs02k30" path="res://scenes/bonus_cards/bonus_platform_card.tscn" id="5_y0l6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbgty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i166f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkmgm"]
+size = Vector2(19.9219, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oknu7"]
 size = Vector2(16, 32)
@@ -162,8 +165,10 @@ sources/0 = SubResource("TileSetAtlasSource_qkmgm")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnne4"]
 size = Vector2(226, 20)
 
-[node name="LevelOne" type="Node2D"]
+[node name="LevelThree" type="Node2D"]
 script = ExtResource("1_oknu7")
+bonus_ball_scene = ExtResource("2_4umhc")
+bonus_platform_scene = ExtResource("5_y0l6c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 128)
@@ -188,7 +193,7 @@ scale = Vector2(12.8, 1)
 shape = SubResource("RectangleShape2D_qkmgm")
 
 [node name="Floor" type="CollisionShape2D" parent="Walls"]
-position = Vector2(129, 281)
+position = Vector2(128.5, 283)
 scale = Vector2(12.8, 1)
 shape = SubResource("RectangleShape2D_qkmgm")
 
@@ -231,9 +236,10 @@ scale = Vector2(1.02297, 0.639874)
 shape = SubResource("RectangleShape2D_hnne4")
 
 [node name="Platform" parent="." instance=ExtResource("3_4umhc")]
+unique_name_in_owner = true
 position = Vector2(128, 240)
 
 [node name="Ball" parent="." instance=ExtResource("4_7ry6i")]
-position = Vector2(129, 228)
+position = Vector2(129, 23)
 
 [connection signal="body_entered" from="DangerZone" to="Ball" method="_on_danger_zone_body_entered"]

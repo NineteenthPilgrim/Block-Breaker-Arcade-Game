@@ -15,7 +15,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.name == "Platform":
+	if body.name == "Platform" or body.name == "BonusPlatform":
 		spawn_extra_ball()
 		queue_free()
 
