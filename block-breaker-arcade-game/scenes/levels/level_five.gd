@@ -9,14 +9,14 @@ extends Node2D
 @export var bonus_ball_scene_card: PackedScene
 @export var bonus_platform_scene_card: PackedScene
 @export var bonus_shield_scene_card: PackedScene 
-@export var spawn_positions := [Vector2(120, 134), Vector2(136, 134)]
+@export var spawn_positions := [Vector2(24, 118), Vector2(232, 118)]
 
 var bonus_platform_instance: Node = null
 var bonus_shield_instance: Node = null
 
-var columns = 10
-var rows = 14
-var margin = 48
+var columns = 12
+var rows = 16
+var margin = 64
 
 
 func spawn_random_card():
@@ -86,25 +86,29 @@ func _ready() -> void:
 func level():
 	for i in rows:
 		for j in columns:
-			if (j in [0,9] and i in [0,1]):
+			if (j in [0,1,5,6,10,11] and i in [0,1]):
 				continue
-			if i >= 8 and (j == 0 or j == 9):
+			if (j in [0,11] and i in [2,3]):
 				continue
-			if i >= 12 and (j == 2 or j == 7):
+			if (j in [0,11] and i in [6,7]):
 				continue
-			if i >= 10 and j in [3,4,5,6]:
+			if (j in [0,1,10,11] and i in [8,9]):
 				continue
-			if (i in [8,9] and j in [4,5]):
+			if (j in [0,1,2,9,10,11] and i in [10,11]):
 				continue
-			if i <= 2 or (i >= 11 and (j == 1 or j == 8)):
-				var new_brick = brick_one.instantiate()
+			if (j in [0,1,2,3,8,9,10,11] and i in [12,13]):
+				continue
+			if (j in [0,1,2,3,4,7,8,9,10,11] and i in [14,15]):
+				continue
+			if i in [5,6,7,8] and j in [5,6]:
+				var new_brick = brick_two.instantiate()
 				add_child(new_brick)
-				new_brick.position = Vector2(margin + (16 * j),\
+				new_brick.position = Vector2(margin-32 + (16 * j),\
 				margin + (8 * i))
 			else:
-				var new_bricks = brick_two.instantiate()
+				var new_bricks = brick_one.instantiate()
 				add_child(new_bricks)
-				new_bricks.position = Vector2(margin + (16 * j),\
+				new_bricks.position = Vector2(margin-32 + (16 * j),\
 				margin + (8 * i))
 
 
