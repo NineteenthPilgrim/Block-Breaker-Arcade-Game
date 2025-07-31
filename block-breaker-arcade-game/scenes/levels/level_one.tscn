@@ -204,9 +204,9 @@ scale = Vector2(1.02297, 0.639874)
 shape = SubResource("RectangleShape2D_hnne4")
 
 [node name="Platform" parent="." instance=ExtResource("3_vsfy4")]
-position = Vector2(128, 240)
+position = Vector2(128, 239)
 
 [node name="Ball" parent="." instance=ExtResource("4_w53h0")]
-position = Vector2(129, 230)
+position = Vector2(129, 229)
 
 [connection signal="body_entered" from="DangerZone" to="Ball" method="_on_danger_zone_body_entered"]

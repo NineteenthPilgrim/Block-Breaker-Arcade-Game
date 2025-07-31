@@ -3,29 +3,52 @@ extends Node2D
 @onready var brick_one = preload("res://scenes/bricks/brick.tscn")
 @onready var brick_two = preload("res://scenes/bricks/brick_two.tscn")
 @onready var bonus_platfrom = preload("res://scenes/platform/bonus_platform.tscn")
+@onready var bonus_shield = preload("res://scenes/shield/bonus_shield.tscn")
 @onready var platform: CharacterBody2D = %Platform
 
-@export var bonus_ball_scene: PackedScene
-@export var bonus_platform_scene: PackedScene
+@export var bonus_ball_scene_card: PackedScene
+@export var bonus_platform_scene_card: PackedScene
+@export var bonus_shield_scene_card: PackedScene 
 @export var spawn_positions := [Vector2(56, 150), Vector2(200, 150)]
 
 var bonus_platform_instance: Node = null
+var bonus_shield_instance: Node = null
 
-var columns = 8
-var rows = 12
-var margin = 64
+var columns = 10
+var rows = 14
+var margin = 48
 
 
 func spawn_random_card():
 	# Выбираем случайную позицию из массива
 	var pos = spawn_positions[randi() % spawn_positions.size()]
-	# Выбираем случайную карту
-	var card_scene = bonus_ball_scene if (randi() % 2 == 0)\
-	else bonus_platform_scene
-	# Создаём инстанс карты
+	
+	var cards = [
+		bonus_ball_scene_card,
+		bonus_platform_scene_card,
+		bonus_shield_scene_card
+		]
+		
+	var card_scene = cards[randi() % cards.size()]
+
 	var card_instance = card_scene.instantiate()
 	add_child(card_instance)
 	card_instance.global_position = pos
+
+
+func spawn_bonus_shield():
+
+	# Создать щит
+	bonus_shield_instance = bonus_shield.instantiate()
+	add_child(bonus_shield_instance)
+
+	# Разместить щит позади платформы
+	bonus_shield_instance.global_position = Vector2(128, 241.0)
+
+	# Щит исчезает через 10 секунд
+	await get_tree().create_timer(10).timeout
+	if bonus_shield_instance and bonus_shield_instance.is_inside_tree():
+		bonus_shield_instance.queue_free()
 
 
 func swap_to_bonus_platform():
@@ -37,10 +60,8 @@ func swap_to_bonus_platform():
 	bonus_platform_instance = bonus_platfrom.instantiate()
 	bonus_platform_instance.global_position = platform.global_position
 	add_child(bonus_platform_instance)
-	
 	# Вернуть обычную через 10 секунд
 	await get_tree().create_timer(10).timeout
-	
 	if bonus_platform_instance and bonus_platform_instance.is_inside_tree():
 		bonus_platform_instance.queue_free()
 	
@@ -65,20 +86,26 @@ func _ready() -> void:
 func level():
 	for i in rows:
 		for j in columns:
-			var random_bricks = randi_range(0,3)
-			if random_bricks >= 0:
-				if (i in [2,3] and j in [3,4]) or (i in [8,9] and j in [3,4]):
-					continue
-				if (i <= 0 or j <=0) or i == rows - 1 or j == columns - 1:
-					var new_brick = brick_one.instantiate()
-					add_child(new_brick)
-					new_brick.position = Vector2(margin + (16 * j),\
-					margin - 16 + (8 * i))
-				else:
-					var new_bricks = brick_two.instantiate()
-					add_child(new_bricks)
-					new_bricks.position = Vector2(margin + (16 * j),\
-					margin - 16 + (8 * i))
+			if (j in [0,9] and i in [0,1]):
+				continue
+			if i >= 8 and (j == 0 or j == 9):
+				continue
+			if i >= 12 and (j == 2 or j == 7):
+				continue
+			if i >= 10 and j in [3,4,5,6]:
+				continue
+			if (i in [8,9] and j in [4,5]):
+				continue
+			if i <= 2 or (i >= 11 and (j == 1 or j == 8)):
+				var new_brick = brick_one.instantiate()
+				add_child(new_brick)
+				new_brick.position = Vector2(margin + (16 * j),\
+				margin + (8 * i))
+			else:
+				var new_bricks = brick_two.instantiate()
+				add_child(new_bricks)
+				new_bricks.position = Vector2(margin + (16 * j),\
+				margin + (8 * i))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -40,11 +40,13 @@ func level():
 				if i <= 2:
 					var new_brick = brick_one.instantiate()
 					add_child(new_brick)
-					new_brick.position = Vector2(margin + (16 * j), margin / 2 + (16 * i))
+					new_brick.position = Vector2(margin + (16 * j),\
+					margin / 2 + (16 * i))
 				else:
 					var new_bricks = brick_two.instantiate()
 					add_child(new_bricks)
-					new_bricks.position = Vector2(margin + (16 * j), margin  / 2  + (16 * i))
+					new_bricks.position = Vector2(margin + (16 * j),\
+					margin  / 2  + (16 * i))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

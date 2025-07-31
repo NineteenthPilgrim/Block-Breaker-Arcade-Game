@@ -11,19 +11,15 @@ func _ready():
 
 
 func _process(delta):
-	position.y += 50 * delta  
+	position.y += 40 * delta  
 
 
 func _on_body_entered(body):
 	if body.name == "Platform" or body.name == "BonusPlatform":
-		spawn_extra_ball()
+		if not ball_scene:
+			return
+		var ball = ball_scene.instantiate()
+		get_tree().current_scene.add_child(ball)
+		ball.global_position = body.global_position + Vector2(0, -8)
+		ball.is_active = true
 		queue_free()
-
-
-func spawn_extra_ball():
-	if not ball_scene:
-		return
-	var ball = ball_scene.instantiate()
-	get_tree().current_scene.add_child(ball)
-	ball.global_position = global_position 
-	ball.is_active = true

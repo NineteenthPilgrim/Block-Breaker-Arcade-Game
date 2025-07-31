@@ -4,12 +4,13 @@ extends Node
 @onready var level_label: Label = $CanvasLayer/LevelLabel
 
 var score = 0
+var wave = 1
 var level = 1
 var levels : Array= [
 	"res://scenes/levels/level_one.tscn",
 	"res://scenes/levels/level_two.tscn",
 	"res://scenes/levels/level_three.tscn",
-	#"res://scenes/levels/level_four.tscn",
+	"res://scenes/levels/level_four.tscn",
 	#"res://scenes/levels/level_five.tscn",
 ]
 

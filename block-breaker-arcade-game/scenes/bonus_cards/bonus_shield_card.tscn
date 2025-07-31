@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://df5slkshnjle6"]
+
+[ext_resource type="Script" uid="uid://0cf4uho82ijx" path="res://scenes/bonus_cards/bonus_shield_card.gd" id="1_hl0y5"]
+[ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="2_l4udt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gik6d"]
+atlas = ExtResource("2_l4udt")
+region = Rect2(131, 65, 10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5od2"]
+size = Vector2(10, 12)
+
+[node name="BonusShield" type="Area2D"]
+script = ExtResource("1_hl0y5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gik6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y5od2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

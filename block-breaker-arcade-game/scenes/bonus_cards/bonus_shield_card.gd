@@ -12,9 +12,8 @@ func _process(delta):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Platform" and body is CharacterBody2D:
-		# Замену сделает основной узел (например, Main.gd)
+	if body.name == "Platform" or body.name == "BonusPlatform":
 		var scene = get_tree().current_scene
-		if scene.has_method("swap_to_bonus_platform"):
-			scene.call_deferred("swap_to_bonus_platform")
+		if scene.has_method("spawn_bonus_shield"):
+			scene.call_deferred("spawn_bonus_shield")  # вызываем безопасно
 		queue_free()

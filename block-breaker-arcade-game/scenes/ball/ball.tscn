@@ -19,6 +19,8 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.770335, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Ball" type="CharacterBody2D"]
+collision_layer = 65
+collision_mask = 65
 motion_mode = 1
 wall_min_slide_angle = 3.14159
 script = ExtResource("1_nv6q1")
@@ -28,6 +30,8 @@ z_index = 1
 texture = SubResource("AtlasTexture_xotqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 65
+visibility_layer = 65
 shape = SubResource("CircleShape2D_jbgth")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

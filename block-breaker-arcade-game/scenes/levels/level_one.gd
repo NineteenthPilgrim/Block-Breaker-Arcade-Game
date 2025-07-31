@@ -6,15 +6,16 @@ extends Node2D
 @export var end_screen: PackedScene
 
 var columns = 9
-var rows
+var rows = 5
 var margin = 24
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level()
 
 
 func level():
-	rows = 5
 	for i in rows:
 		for j in columns:
 			if i <= 2:
