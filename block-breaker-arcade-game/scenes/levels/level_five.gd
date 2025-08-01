@@ -14,6 +14,8 @@ extends Node2D
 var bonus_platform_instance: Node = null
 var bonus_shield_instance: Node = null
 
+var pause_menu_scene = preload("res://scenes/ui/pause_menu.tscn")
+
 var columns = 12
 var rows = 16
 var margin = 64
@@ -81,6 +83,11 @@ func _ready() -> void:
 	timer.autostart = true
 	add_child(timer)
 	timer.connect("timeout", Callable(self, "spawn_random_card"))
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		add_child(pause_menu_scene.instantiate())
 
 
 func level():

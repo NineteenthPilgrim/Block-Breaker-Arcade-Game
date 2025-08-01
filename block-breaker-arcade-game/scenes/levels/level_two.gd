@@ -6,6 +6,8 @@ extends Node2D
 @export var bonus_ball: PackedScene
 @export var spawn_positions := [Vector2(56, 182), Vector2(200, 182)]
 
+var pause_menu_scene = preload("res://scenes/ui/pause_menu.tscn")
+
 var columns = 10
 var rows = 1
 var margin = 48
@@ -16,6 +18,9 @@ func _ready() -> void:
 	level()
 	start_bonus_ball_timer()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		add_child(pause_menu_scene.instantiate())
 
 func start_bonus_ball_timer():
 	var timer = get_tree().create_timer(30.0)

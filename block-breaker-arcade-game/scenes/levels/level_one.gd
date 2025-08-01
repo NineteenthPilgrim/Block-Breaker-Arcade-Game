@@ -5,6 +5,8 @@ extends Node2D
 
 @export var end_screen: PackedScene
 
+var pause_menu_scene = preload("res://scenes/ui/pause_menu.tscn")
+
 var columns = 9
 var rows = 5
 var margin = 24
@@ -14,6 +16,9 @@ var margin = 24
 func _ready() -> void:
 	level()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		add_child(pause_menu_scene.instantiate())
 
 func level():
 	for i in rows:
