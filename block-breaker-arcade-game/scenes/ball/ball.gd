@@ -5,9 +5,11 @@ var direction = Vector2.DOWN
 var is_active = true
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var hit_sound: AudioStreamPlayer2D = $HitSound
 
 
 func _ready() -> void:
+	randomize()
 	speed = speed + (10 * GameManager.level)
 	velocity = Vector2(speed * -1, speed)
 	
@@ -20,6 +22,11 @@ func _physics_process(delta: float) -> void:
 			var current_speed = velocity.length()
 			velocity = velocity.bounce(collision.get_normal()).normalized()\
 			* current_speed * delta
+			
+			if hit_sound:
+				hit_sound.pitch_scale = randf_range(0.9,1.1)
+				hit_sound.play()
+			
 			var len = velocity.length()
 			
 			if len > speed * 1.02 or len < speed * 0.98:
@@ -32,7 +39,8 @@ func _physics_process(delta: float) -> void:
 			
 			if collision.get_collider().has_method("hit"):
 				collision.get_collider().hit()
-			print("Normal = ", collision.get_normal(), " | Speed = ", velocity.length())
+			#print("Normal = ", collision.get_normal(),\
+			# " | Speed = ", velocity.length())
 
 
 
