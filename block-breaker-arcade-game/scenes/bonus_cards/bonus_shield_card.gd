@@ -5,7 +5,7 @@ extends Area2D
 
 
 func _ready():
-	# Карта исчезает через 10 секунд, если не поймана
+	#remove the card 10 seconds after it appears
 	await get_tree().create_timer(10).timeout
 	call_deferred("queue_free")
 
@@ -14,13 +14,17 @@ func _process(delta):
 
 
 func _on_body_entered(body: Node2D) -> void:
+	#spawn a protective shield behind the platform
 	if body.name == "Platform" or body.name == "BonusPlatform":
 		if shield_card:
 			shield_card.play()
+		
 		set_deferred("visible", false)
 		collision_shape_2d.disabled = true
 		var scene = get_tree().current_scene
+		
 		if scene.has_method("spawn_bonus_shield"):
-			scene.call_deferred("spawn_bonus_shield")  # вызываем безопасно
+			scene.call_deferred("spawn_bonus_shield")
+		
 		await shield_card.finished
 		call_deferred("queue_free")

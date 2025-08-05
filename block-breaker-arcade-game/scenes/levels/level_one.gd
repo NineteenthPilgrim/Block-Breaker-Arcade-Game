@@ -12,15 +12,17 @@ var rows = 5
 var margin = 24
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
 
+
 func level():
+	#algorithm for generating brick layout for the level
 	for i in rows:
 		for j in columns:
 			if i <= 2:
@@ -31,8 +33,3 @@ func level():
 				var new_bricks = brick_two.instantiate()
 				add_child(new_bricks)
 				new_bricks.position = Vector2(margin + (24 * j), margin + (16 * i))
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

@@ -19,44 +19,34 @@ var margin = 64
 
 
 func spawn_random_card():
-	# Выбираем случайную позицию из массива
 	var pos = spawn_positions[randi() % spawn_positions.size()]
-	# Выбираем случайную карту
 	var card_scene = bonus_ball_scene if (randi() % 2 == 0)\
 	else bonus_platform_scene
-	# Создаём инстанс карты
 	var card_instance = card_scene.instantiate()
 	add_child(card_instance)
 	card_instance.global_position = pos
 
 
 func swap_to_bonus_platform():
-	# Спрятать обычную платформу
 	platform.set_deferred("visible", false)
-	#platform.visible = false
 	platform.set_physics_process(false)
 	platform.collision_layer &= ~(1 << 3)
-	# Создать большую платформу на том же месте
 	bonus_platform_instance = bonus_platfrom.instantiate()
 	bonus_platform_instance.global_position = platform.global_position
 	add_child(bonus_platform_instance)
-	
-	# Вернуть обычную через 10 секунд
 	await get_tree().create_timer(10).timeout
 	
 	if bonus_platform_instance and bonus_platform_instance.is_inside_tree():
 		bonus_platform_instance.call_deferred("queue_free")
+	
 	platform.set_deferred("visible", true)
-	#platform.visible = true
 	platform.set_physics_process(true)
 	platform.collision_layer |= (1 << 3)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level()
-	randomize()  # обязательно вызвать для рандома
-	# Запустить таймер
+	randomize() 
 	var timer = Timer.new()
 	timer.wait_time = 30
 	timer.one_shot = false
@@ -71,6 +61,7 @@ func _input(event: InputEvent) -> void:
 
 
 func level():
+	#algorithm for generating brick layout for the level
 	for i in rows:
 		for j in columns:
 			var random_bricks = randi_range(0,3)
@@ -87,8 +78,3 @@ func level():
 					add_child(new_bricks)
 					new_bricks.position = Vector2(margin + (16 * j),\
 					margin - 16 + (8 * i))
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

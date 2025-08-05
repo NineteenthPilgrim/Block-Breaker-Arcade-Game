@@ -7,6 +7,7 @@ const platform_width = 16
 const platform_position_y: float = 240.0 
 
 func _physics_process(delta: float) -> void:
+	#properties and behavior settings for the platform
 	global_position.y = platform_position_y
 	var mouse_x = get_global_mouse_position().x
 	mouse_x = clamp(mouse_x, level_width / 16 + (platform_width / 2),\

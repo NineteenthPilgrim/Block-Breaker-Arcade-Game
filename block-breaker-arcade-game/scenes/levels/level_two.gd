@@ -13,20 +13,21 @@ var rows = 1
 var margin = 48
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level()
 	start_bonus_ball_timer()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
 
+
 func start_bonus_ball_timer():
 	var timer = get_tree().create_timer(30.0)
 	await timer.timeout
 	spawn_card()
-	start_bonus_ball_timer()  # Рекурсивно перезапускаем
+	start_bonus_ball_timer() 
 
 
 func spawn_card():
@@ -37,6 +38,7 @@ func spawn_card():
 
 
 func level():
+	#algorithm for generating brick layout for the level
 	rows = 6
 	for i in rows:
 		for j in columns:
@@ -52,8 +54,3 @@ func level():
 					add_child(new_bricks)
 					new_bricks.position = Vector2(margin + (16 * j),\
 					margin  / 2  + (16 * i))
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

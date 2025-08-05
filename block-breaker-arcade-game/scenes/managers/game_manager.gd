@@ -26,6 +26,7 @@ func play_lose_sound() -> void:
 	await lose_audio.finished
 
 func load_current_level():
+	#load the required level
 	if level - 1 < levels.size():
 		score = 0
 		get_tree().change_scene_to_file(levels[level - 1])

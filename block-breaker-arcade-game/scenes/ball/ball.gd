@@ -17,6 +17,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	#ball behavior in the game
 	if is_active:
 		var collision = move_and_collide(velocity * delta)
 		
@@ -41,19 +42,15 @@ func _physics_process(delta: float) -> void:
 			
 			if collision.get_collider().has_method("hit"):
 				collision.get_collider().hit()
-			#print("Normal = ", collision.get_normal(),\
-			# " | Speed = ", velocity.length())
-
 
 
 func game_over():
 	get_tree().change_scene_to_file("res://scenes/ui/end_screen.tscn")
-	
+
 
 func _on_danger_zone_body_entered(body: Node2D) -> void:
+	#ball enters the death zone
 	get_tree().paused = true
 	GameManager.play_lose_sound()
-	#await get_tree().create_timer(1).timeout
 	get_tree().paused = false
-	#await get_tree().create_timer(.1).timeout
 	game_over()
