@@ -21,7 +21,8 @@ func _on_body_entered(body):
 	if body.name == "Platform" or body.name == "BonusPlatform":
 		if ball_card:
 			ball_card.play()
-		visible = false
+		set_deferred("visible", false)
+		#visible = false
 		collision_shape_2d.disabled = true
 		if not ball_scene:
 			return

@@ -35,6 +35,8 @@ window/stretch/mode="canvas_items"
 
 Brick=""
 Platform=""
+Ball=""
+Bonus=""
 
 [gui]
 

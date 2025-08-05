@@ -14,7 +14,7 @@ region = Rect2(48, 128, 32, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5wq1"]
 size = Vector2(64, 6)
 
-[node name="BonusPlatform" type="CharacterBody2D"]
+[node name="BonusPlatform" type="CharacterBody2D" groups=["Bonus"]]
 collision_layer = 9
 collision_mask = 4
 script = ExtResource("1_evgj2")

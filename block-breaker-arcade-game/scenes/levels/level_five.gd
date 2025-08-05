@@ -55,7 +55,8 @@ func spawn_bonus_shield():
 
 func swap_to_bonus_platform():
 	# Спрятать обычную платформу
-	platform.visible = false
+	platform.set_deferred("visible", false)
+	#platform.visible = false
 	platform.set_physics_process(false)
 	platform.collision_layer &= ~(1 << 3)
 	# Создать большую платформу на том же месте
@@ -66,8 +67,8 @@ func swap_to_bonus_platform():
 	await get_tree().create_timer(10).timeout
 	if bonus_platform_instance and bonus_platform_instance.is_inside_tree():
 		bonus_platform_instance.call_deferred("queue_free")
-	
-	platform.visible = true
+	platform.set_deferred("visible", true)
+	#platform.visible = true
 	platform.set_physics_process(true)
 	platform.collision_layer |= (1 << 3)
 
