@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvgss8wu8piew"]
+[gd_scene load_steps=7 format=3 uid="uid://bvgss8wu8piew"]
 
 [ext_resource type="Script" uid="uid://c1xoaj7l0eajl" path="res://scenes/bonus_cards/bonus_ball.gd" id="1_cj20f"]
 [ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="1_hrqto"]
 [ext_resource type="PackedScene" uid="uid://db1255chn3jf5" path="res://scenes/ball/ball.tscn" id="2_517rg"]
+[ext_resource type="AudioStream" uid="uid://dqwm080ub2t7w" path="res://resourses/sounds/card_p2.wav" id="4_517rg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nr04"]
 atlas = ExtResource("1_hrqto")
@@ -22,3 +23,7 @@ texture = SubResource("AtlasTexture_8nr04")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cj20f")
+
+[node name="BallCard" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_517rg")
+bus = &"SFX"

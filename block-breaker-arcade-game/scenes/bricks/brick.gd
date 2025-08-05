@@ -19,12 +19,12 @@ func hit():
 	collision_shape_brick_one.disabled = true
 	var brick_left = get_tree().get_nodes_in_group('Brick')
 	if brick_left.size() == 1:
-		#get_parent().get_node("Ball").is_active = false
-		await get_tree().create_timer(1).timeout
+		get_tree().paused = true
+		await GameManager.play_win_sound()
+		get_tree().paused = false
 		GameManager.level += 1 
 		GameManager.load_current_level()
-		#get_tree().reload_current_scene()
 	else:
 		await get_tree().create_timer(1).timeout
-		queue_free()
+		call_deferred("queue_free")
 	

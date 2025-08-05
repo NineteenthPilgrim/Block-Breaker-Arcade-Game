@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkx2nwwmlfbhe"]
+[gd_scene load_steps=4 format=3 uid="uid://dkx2nwwmlfbhe"]
 
 [ext_resource type="Script" uid="uid://cwaof3dt88ap0" path="res://scenes/managers/game_manager.gd" id="1_i04cf"]
+[ext_resource type="AudioStream" uid="uid://bb5esplib75pj" path="res://resourses/sounds/win_p2.wav" id="2_cax2t"]
+[ext_resource type="AudioStream" uid="uid://cmcjhun8ecq8t" path="res://resourses/sounds/lose_p2.wav" id="3_6t86j"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_i04cf")
@@ -36,3 +38,13 @@ theme_override_colors/font_outline_color = Color(0.223529, 0.168627, 0.207843, 1
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
+
+[node name="WinAudio" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("2_cax2t")
+bus = &"SFX"
+
+[node name="LoseAudio" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("3_6t86j")
+bus = &"SFX"

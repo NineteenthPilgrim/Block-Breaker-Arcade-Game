@@ -6,6 +6,8 @@ var is_active = true
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
 func _ready() -> void:
@@ -49,6 +51,9 @@ func game_over():
 	
 
 func _on_danger_zone_body_entered(body: Node2D) -> void:
-	sprite_2d.visible = false
-	await get_tree().create_timer(.1).timeout
+	get_tree().paused = true
+	GameManager.play_lose_sound()
+	#await get_tree().create_timer(1).timeout
+	get_tree().paused = false
+	#await get_tree().create_timer(.1).timeout
 	game_over()

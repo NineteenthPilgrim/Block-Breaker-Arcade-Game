@@ -50,7 +50,7 @@ func spawn_bonus_shield():
 	# Щит исчезает через 10 секунд
 	await get_tree().create_timer(10).timeout
 	if bonus_shield_instance and bonus_shield_instance.is_inside_tree():
-		bonus_shield_instance.queue_free()
+		bonus_shield_instance.call_deferred("queue_free")
 
 
 func swap_to_bonus_platform():
@@ -65,7 +65,7 @@ func swap_to_bonus_platform():
 	# Вернуть обычную через 10 секунд
 	await get_tree().create_timer(10).timeout
 	if bonus_platform_instance and bonus_platform_instance.is_inside_tree():
-		bonus_platform_instance.queue_free()
+		bonus_platform_instance.call_deferred("queue_free")
 	
 	platform.visible = true
 	platform.set_physics_process(true)
@@ -111,12 +111,12 @@ func level():
 				var new_brick = brick_two.instantiate()
 				add_child(new_brick)
 				new_brick.position = Vector2(margin-32 + (16 * j),\
-				margin + (8 * i))
+				margin-16 + (8 * i))
 			else:
 				var new_bricks = brick_one.instantiate()
 				add_child(new_bricks)
 				new_bricks.position = Vector2(margin-32 + (16 * j),\
-				margin + (8 * i))
+				margin-16 + (8 * i))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

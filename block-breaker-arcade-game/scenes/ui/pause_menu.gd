@@ -14,14 +14,14 @@ func _input(event: InputEvent) -> void:
 		is_closing = true
 		await get_tree().create_timer(.01).timeout
 		get_tree().paused = false
-		queue_free()
+		call_deferred("queue_free")
 
 func _on_resume_button_pressed() -> void:
 	if is_closing:
 		return
 	is_closing = true
 	get_tree().paused = false
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_option_button_pressed() -> void:
 	pass # Replace with function body.

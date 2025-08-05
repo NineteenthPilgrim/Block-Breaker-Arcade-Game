@@ -50,7 +50,7 @@ func spawn_bonus_shield():
 	# Щит исчезает через 10 секунд
 	await get_tree().create_timer(10).timeout
 	if bonus_shield_instance and bonus_shield_instance.is_inside_tree():
-		bonus_shield_instance.queue_free()
+		bonus_shield_instance.call_deferred("queue_free")
 
 
 func swap_to_bonus_platform():
@@ -65,7 +65,7 @@ func swap_to_bonus_platform():
 	# Вернуть обычную через 10 секунд
 	await get_tree().create_timer(10).timeout
 	if bonus_platform_instance and bonus_platform_instance.is_inside_tree():
-		bonus_platform_instance.queue_free()
+		bonus_platform_instance.call_deferred("queue_free")
 	
 	platform.visible = true
 	platform.set_physics_process(true)

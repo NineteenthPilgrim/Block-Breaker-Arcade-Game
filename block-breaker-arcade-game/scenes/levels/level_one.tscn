@@ -187,7 +187,7 @@ scale = Vector2(12.8, 1)
 shape = SubResource("RectangleShape2D_qkmgm")
 
 [node name="Floor" type="CollisionShape2D" parent="Walls"]
-position = Vector2(129, 281)
+position = Vector2(129, 284)
 scale = Vector2(12.8, 1)
 shape = SubResource("RectangleShape2D_qkmgm")
 

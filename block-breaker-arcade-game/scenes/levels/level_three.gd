@@ -44,7 +44,7 @@ func swap_to_bonus_platform():
 	await get_tree().create_timer(10).timeout
 	
 	if bonus_platform_instance and bonus_platform_instance.is_inside_tree():
-		bonus_platform_instance.queue_free()
+		bonus_platform_instance.call_deferred("queue_free")
 	
 	platform.visible = true
 	platform.set_physics_process(true)

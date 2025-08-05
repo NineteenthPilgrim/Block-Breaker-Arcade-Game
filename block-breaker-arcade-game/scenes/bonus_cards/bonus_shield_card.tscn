@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://df5slkshnjle6"]
+[gd_scene load_steps=6 format=3 uid="uid://df5slkshnjle6"]
 
 [ext_resource type="Script" uid="uid://0cf4uho82ijx" path="res://scenes/bonus_cards/bonus_shield_card.gd" id="1_hl0y5"]
 [ext_resource type="Texture2D" uid="uid://bedd7ff762vev" path="res://TileSetF2D.png" id="2_l4udt"]
+[ext_resource type="AudioStream" uid="uid://dqwm080ub2t7w" path="res://resourses/sounds/card_p2.wav" id="3_l4udt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gik6d"]
 atlas = ExtResource("2_l4udt")
@@ -18,5 +19,9 @@ texture = SubResource("AtlasTexture_gik6d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y5od2")
+
+[node name="ShieldCard" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_l4udt")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
